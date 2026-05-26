@@ -1,0 +1,99 @@
+cd Recu_TP_AySO
+git clone https://github.com/lautimiguelrios-cloud/Recu_TP_AySO
+cd Recu_TP_AySO
+cho "sudo mkdir -p /datos/{textos/{libros,revistas},videos/{peliculas,series}}" > Punto_A.sh
+echo "sudo mkdir -p /datos/{textos/{libros,revistas},videos/{peliculas,series}}" > Punto_A.sh
+chmod 777 Punto_A.sh
+./Punto_A.sh
+cat Punto_A.sh
+chmod 777 Punto_A.sh
+./Punto_A.sh
+git add Punto_A.sh
+git commit -m "ADD: Punto A resuelto"
+git push
+git add Punto_A.sh
+git commit -m "ADD: Punto A resuelto"
+git push
+git config --global user.email "lautimiguelrios@hotmail.com"
+git config --global user.name "lautimiguelrios-cloud"
+git add Punto_A.sh
+git commit -m "ADD: Punto A resuelto"
+groupadd
+useradd
+cat << FIN > usuario.sh
+sudo groupadd p1c1_2026_g1
+sudo useradd -m -G p1c1_2026_g1 -s /bin/bash p1c1_2026_u1
+echo "p1c1_2026_u1:clave1" | sudo chpasswd
+FIN
+
+cat << FIN > Punto_B.sh
+sudo chown -R p1c1_2026_u1:p1c1_2026_g1 /datos/
+sudo chmod -R 750 /datos/
+su -c "whoami > /datos/validar1.txt" p1c1_2026_u1
+FIN
+
+chmod 777 Punto_B.sh
+./Punto_B.sh
+cat << FIN > usuario.sh
+sudo groupadd p1c1_2026_g1
+sudo useradd -m -G p1c1_2026_g1 -s /bin/bash p1c1_2026_u1
+echo "p1c1_2026_u1:clave1" | sudo chpasswd
+FIN
+
+chmod 777 usuario.sh
+./usuario.sh
+cat /etc/passwd | grep p1c1_2026_u1
+./Punto_B.sh
+cat << FIN > Punto_C.sh
+sudo groupadd p1c1_2026_Todos
+sudo useradd -m -g p1c1_2026_Todos -s /bin/bash p1c1_2026_u2
+echo "p1c1_2026_u2:clave1" | sudo chpasswd
+sudo usermod -aG p1c1_2026_Todos p1c1_2026_u1
+sudo chown -R p1c1_2026_u1:p1c1_2026_Todos /datos/
+sudo chmod -R 770 /datos/
+sudo chmod o+rx /datos/
+su -c "id >> /datos/validar1.txt" p1c1_2026_u2
+FIN
+
+chmod 777 Punto_C.sh
+./Punto_C.sh
+git add Punto_C.sh
+git commit -m "ADD: Punto C resuelto"
+git push
+ls
+git add Punto_B.sh usuario.sh
+git commit -m "ADD: Punto B y usuario.sh resueltos"
+git push
+echo "mkdir -p ~/Ejercicio_D/{{rx,tx}/lote_{1..20},rx/extras_{1..100}}" > Punto_D.sh
+chmod 777 Punto_D.sh
+./Punto_D.sh
+git add Punto_D.sh
+git commit -m "ADD: Punto D resuelto"
+git push
+cat << 'FIN' > Punto_E.sh
+mkdir -p ~/Punto_E
+grep "MemTotal" /proc/meminfo > ~/Punto_E/Filtro_basico.txt
+grep "model name" /proc/cpuinfo | head -n 1 >> ~/Punto_E/Filtro_basico.txt
+grep "cpu MHz" /proc/cpuinfo | head -n 1 >> ~/Punto_E/Filtro_basico.txt
+FIN
+
+chmod 777 Punto_E.sh
+./Punto_E.sh
+git add Punto_E.sh
+git commit -m "ADD: Punto E resuelto"
+git push
+cat << 'FIN' > Punto_F.sh
+mkdir -p ~/Punto_F
+IP=$(curl -s ifconfig.me)
+MODELO=$(grep "model name" /proc/cpuinfo | head -n1 | awk -F ':' '{print $2}')
+FRECUENCIA=$(grep "cpu MHz" /proc/cpuinfo | head -n1 | awk -F ':' '{print $2}')
+echo "Mi ip publica es: $IP" > ~/Punto_F/Filtro_Avanzado.txt
+echo "CPU Modelo:$MODELO Frecuencia:$FRECUENCIA" >> ~/Punto_F/Filtro_Avanzado.txt
+FIN
+
+chmod 777 Punto_F.sh
+./Punto_F.sh
+git add Punto_F.sh
+git commit -m "ADD: Punto F resuelto"
+git push
+history -a
